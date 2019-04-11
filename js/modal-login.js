@@ -18,7 +18,7 @@ try {
   isStorageSupport = false;
 }
 
-link.addEventListener("click", function(evt) { // 2. Отлавливает событие клика по кнопке.
+link.addEventListener("click", function (evt) { // 2. Отлавливает событие клика по кнопке.
   evt.preventDefault(); // 4. Отменяет действие по умолчанию, т.е. переход по ссылке.
   popup.classList.add("modal-show"); // 5. Добавляет модалке класс с display:block при клике на ссылку.
 
@@ -32,13 +32,13 @@ link.addEventListener("click", function(evt) { // 2. Отлавливает со
   login.focus(); // 9. Устанавливает фокус при открытии формы на поле ввода логина.
 });
 
-close.addEventListener("click", function(evt) { // 7. Добавляет обработчик клика по кнопке закрытия,
+close.addEventListener("click", function (evt) { // 7. Добавляет обработчик клика по кнопке закрытия,
   evt.preventDefault();                         // отменяет стандартное действие,
   popup.classList.remove("modal-show");         // удаляет класс, возвращая display: none.
   popup.classList.remove("modal-error");        // 19. Удаляет класс ошибки при закрытии формы.
 });
 
-form.addEventListener("submit", function(evt) { // 11. Отлавливает событие отправки формы.
+form.addEventListener("submit", function (evt) { // 11. Отлавливает событие отправки формы.
   if (!login.value || !password.value) { // 13. Отменяет отправку форму если одно из полей незаполнено.
     evt.preventDefault();
     popup.classList.remove("modal-error"); // 20. Добавляет хак, чтобы анимация ошибки срабатывала несколько раз.
@@ -51,7 +51,7 @@ form.addEventListener("submit", function(evt) { // 11. Отлавливает с
   }
 });
 
-window.addEventListener("keydown", function(evt) { // 17. Отлавливает нажатие клавиши esc, 
+window.addEventListener("keydown", function (evt) { // 17. Отлавливает нажатие клавиши esc, 
   if (evt.keyCode === 27) {
     evt.preventDefault(); // отменяет действие по умолчанию(выход из полноэкранного режима),
     if (popup.classList.contains("modal-show")) { // если модалка открыта, закрывает ее.
