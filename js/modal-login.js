@@ -2,6 +2,7 @@ var link = document.querySelector(".login-list"); // 1. Находит кноп�
 
 var popup = document.querySelector(".modal-login"); // 3. Находит модальное окно.
 var close = popup.querySelector(".modal-close"); // 6. Находит кнопку закрытия модалки.
+var overlay = document.querySelector(".modal-overlay"); //21. Находит оверлей.
 
 var form = popup.querySelector("form"); // 10. Находит форму.
 var login = popup.querySelector("[name=login]"); // 8. Находит поле ввода логина.
@@ -21,6 +22,7 @@ try {
 link.addEventListener("click", function (evt) { // 2. Отлавливает событие клика по кнопке.
   evt.preventDefault(); // 4. Отменяет действие по умолчанию, т.е. переход по ссылке.
   popup.classList.add("modal-show"); // 5. Добавляет модалке класс с display:block при клике на ссылку.
+  overlay.classList.add("modal-show"); // 22. Отображает оверлей.
 
   if (storage) { // 16. Записывает логин в поле ввода при открытии модалки, если значение существует,
     login.value = storage;
@@ -34,8 +36,16 @@ link.addEventListener("click", function (evt) { // 2. Отлавливает с�
 
 close.addEventListener("click", function (evt) { // 7. Добавляет обработчик клика по кнопке закрытия,
   evt.preventDefault();                         // отменяет стандартное действие,
-  popup.classList.remove("modal-show");         // удаляет класс, возвращая display: none.
-  popup.classList.remove("modal-error");        // 19. Удаляет класс ошибки при закрытии формы.
+  popup.classList.remove("modal-show");         // удаляет класс, возвращая display: none,
+  popup.classList.remove("modal-error");        // удаляет класс ошибки при закрытии формы
+  overlay.classList.remove("modal-show");       // и оверлей.
+});
+
+overlay.addEventListener("click", function (evt) { // 23. То же, что и в 7, только с оверлеем.
+  evt.preventDefault();
+  popup.classList.remove("modal-show");
+  popup.classList.remove("modal-error");
+  overlay.classList.remove("modal-show");
 });
 
 form.addEventListener("submit", function (evt) { // 11. Отлавливает событие отправки формы.
@@ -57,6 +67,7 @@ window.addEventListener("keydown", function (evt) { // 17. Отлавливае�
     if (popup.classList.contains("modal-show")) { // если модалка открыта, закрывает ее.
       popup.classList.remove("modal-show");
       popup.classList.remove("modal-error");
+      overlay.classList.remove("modal-show");
     }
   }
 });
